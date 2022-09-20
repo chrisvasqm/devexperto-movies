@@ -1,8 +1,8 @@
 package com.example.devexpertomovies
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devexpertomovies.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,13 +13,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonShow.setOnClickListener { onShowClicked() }
-    }
-
-    private fun onShowClicked() {
-        val message = binding.editMessage.text
-        if (message.isNotBlank())
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        binding.recyclerView.apply {
+            adapter = MoviesAdapter(
+                listOf(
+                    Movie("titulo", "cover"),
+                    Movie("titulo2", "cover2"),
+                )
+            )
+        }
     }
 
 }
